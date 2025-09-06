@@ -45,7 +45,7 @@ export const projects = [
         title: "Covaluation (Academic Project)",
         description: "Collaborated on a course group project to build a peer review platform. The system allows users to provide reviews for teammates, while clicking the review increment the view count, fostering transparency and constructive feedback.",
         cover: covaluationCover,
-        tech: ['Python','MySQL','Javascript'],
+        tech: ['Python','SQLite','Javascript'],
         github: "https://github.com/CS2005F23/term-project-teame"
     },
     {

@@ -1,26 +1,22 @@
-import {
-    SiReact, SiPython, SiNodedotjs, SiTailwindcss, SiVite, SiExpress, SiJavascript,
-    SiMongodb, SiMysql, SiFlask, SiPandas, SiNumpy, SiScipy, SiScikitlearn, 
-} from "react-icons/si";
+import { FaReact, FaNodeJs, FaPython } from "react-icons/fa";
+import { SiMongodb, SiVite, SiTailwindcss, SiFlask, SiMysql, SiScikitlearn, SiScipy, SiPandas, SiNumpy, SiJavascript, SiSqlite } from "react-icons/si";
 
-/**
- * @type {Object.<string, { name: string, icon?: React.ComponentType }>}
- */
-export const TECH = {
-  React: { name: "React", icon: SiReact },
-  Python: { name: "Python", icon: SiPython },
-  Node: { name: "Node.js", icon: SiNodedotjs },
-  Tailwind: { name: "TailwindCSS", icon: SiTailwindcss },
-  Vite: { name: "Vite", icon: SiVite },
-  Express: { name: "Express", icon: SiExpress },
-  Javascript: { name: "Javascript", icon: SiJavascript },
-  MongoDB: { name: "MongoDB", icon: SiMongodb },
-  MySQL: { name: "MySQL", icon: SiMysql },
-  Flask: { name: "Flask", icon: SiFlask },
-  Pandas: { name: "Pandas", icon: SiPandas },
-  NumPy: { name: "NumPy", icon: SiNumpy },
-  Scikitlearn: { name: "Scikitlearn", icon: SiScikitlearn },
-  SciPy: { name: "SciPy", icon: SiScipy },
-  Matplotlib: { name: "Matplotlib" },
-  Tkinter: { name: "Tkinter" }
+const techIcons = {
+  React: FaReact,
+  Node: FaNodeJs,
+  Python: FaPython,
+  MongoDB: SiMongodb,
+  Express: FaNodeJs,
+  Javascript: SiJavascript,
+  Vite: SiVite,
+  Tailwind: SiTailwindcss,
+  Flask: SiFlask,
+  MySQL: SiMysql,
+  Scikitlearn: SiScikitlearn,
+  SciPy: SiScipy,
+  Pandas: SiPandas,
+  NumPy: SiNumpy,
+  SQLite: SiSqlite,
 };
+
+export default techIcons;

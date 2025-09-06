@@ -1,5 +1,6 @@
 import React from 'react'
 import {AiFillGithub } from "react-icons/ai";
+import techIcons from '../data/tech';
 
 const ProjectCard = ({ title, description, cover, tech, link }) => {
   return (
@@ -11,14 +12,18 @@ const ProjectCard = ({ title, description, cover, tech, link }) => {
       <p className="text-gray-700 mb-4">{description}</p>
       {tech && tech.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-4">
-          {tech.map((t, idx) => (
+          {tech.map((t, idx) => {
+          const Icon = techIcons[t];
+          return (
             <span
               key={idx}
-              className="bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded"
+              className="flex items-center gap-1 bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded"
             >
+              {Icon ? <Icon className="text-base" title={t} /> : null}
               {t}
             </span>
-          ))}
+          );
+        })}
         </div>
       )}
       {link && (
