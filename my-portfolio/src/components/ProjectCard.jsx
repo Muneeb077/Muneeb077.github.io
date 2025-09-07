@@ -32,7 +32,7 @@ const ProjectCard = ({ title, description, cover, tech, link }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <AiFillGithub className="text-3xl text-gray-300 hover:text-white" />
+          <AiFillGithub className="text-3xl text-gray-300 hover:text-black" />
         </a>
       )}
     </div>
