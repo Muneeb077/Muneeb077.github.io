@@ -8,7 +8,7 @@ const Navbar = () => {
     <div className='flex gap-5 bg-slate-800 py-4 px-10 z-30'>
         
       <button 
-        className='block lg:hidden text-black'
+        className='block lg:hidden text-white'
         onClick={() => {
           setOpenSideMenu(!openSideMenu);
         }}>
