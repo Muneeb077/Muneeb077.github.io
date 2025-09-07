@@ -22,7 +22,7 @@ const Sidebar = ({ isMobile }) => {
                 </a>
             </div>
             <div>
-                <p className='text-white text-center'> Student of Memorial Unviverstiy of Newfoundland</p>
+                <p className='text-white text-center'> Student of Memorial Universtiy of Newfoundland</p>
             </div>
         </div>
     </div>
