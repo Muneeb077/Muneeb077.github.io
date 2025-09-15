@@ -5,7 +5,7 @@ import Sidebar from './Sidebar';
 const Navbar = () => {
   const [openSideMenu, setOpenSideMenu] = useState(false);
   return (
-    <div className='flex gap-5 bg-slate-800 py-4 px-10 z-30'>
+    <div className='flex gap-5 bg-slate-800 py-6 px-10 z-30'>
         
       <button 
         className='block lg:hidden text-white'
@@ -20,8 +20,6 @@ const Navbar = () => {
         )}
         </button>
         
-        <h2 className='text-lg font-medium text-white '>Muneeb Ur Rehman</h2>
-
         {openSideMenu && (
           <div className='fixed top-[60px] left-0 z-40 bg-white'>
             <Sidebar isMobile={true}/>
