@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # this input is NOT affected by defaults. Use an explicit path.
-          path: .my-portfolio/dist
+          path: ./my-portfolio/dist
 
   deploy:
     needs: build
