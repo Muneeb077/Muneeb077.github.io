@@ -1,20 +1,16 @@
 import React from 'react'
 import Button from '../Button'
 import SectionNav from './SectionNav'
-import ThemeToggle from '../ThemeToggle'
 import { site } from '../../data/site'
 
 const ProfileHeader = () => {
   return (
     <header className="flex flex-col gap-7 pt-[clamp(48px,8vw,104px)] lg:sticky lg:top-0 lg:max-h-screen lg:flex-[1_1_320px] lg:overflow-y-auto lg:pb-12">
-      <div className="flex items-start justify-between gap-4">
-        <img
-          src={site.photo}
-          alt={site.name}
-          className="h-[88px] w-[88px] rounded-full border-2 border-line object-cover"
-        />
-        <ThemeToggle />
-      </div>
+      <img
+        src={site.photo}
+        alt={site.name}
+        className="h-[88px] w-[88px] rounded-full border-2 border-line object-cover"
+      />
 
       <div className="flex flex-col gap-2.5">
         <h1 className="font-display text-[clamp(38px,4vw,52px)] font-bold leading-[1.05] tracking-[-0.02em] text-text">

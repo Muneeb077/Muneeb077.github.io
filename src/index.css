@@ -21,24 +21,6 @@
     --color-placeholder: #D8CCFF;
 }
 
-/* Light theme: same tokens, re-pointed. Every pair still meets WCAG AA on ink and surface. */
-:root[data-theme="light"] {
-    --color-ink: #F7F7F8;
-    --color-surface: #FFFFFF;
-    --color-line: #E3E5E9;
-    --color-line-strong: #D4D7DD;
-    --color-rule: #C2C6CE;
-    --color-text: #14161B;
-    --color-text-2: #3A3F4A;
-    --color-muted: #5B616D;
-    --color-accent: #6D28D9;
-    --color-on-accent: #FFFFFF;
-    --color-status: #15803D;
-    --color-placeholder-bg: rgba(109, 40, 217, 0.10);
-    --color-placeholder: #5B21B6;
-    color-scheme: light;
-}
-
 @layer base {
     html {
         font-family: var(--font-sans);

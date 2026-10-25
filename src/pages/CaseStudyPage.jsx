@@ -5,7 +5,6 @@ import SectionLabel from '../components/SectionLabel'
 import Card from '../components/Card'
 import Button from '../components/Button'
 import RichText from '../components/RichText'
-import ThemeToggle from '../components/ThemeToggle'
 import { projects } from '../data/projects'
 import { site } from '../data/site'
 import { focusRing } from '../lib/styles'
@@ -51,7 +50,7 @@ const CaseStudyPage = () => {
 
   return (
     <main className="mx-auto flex max-w-[880px] flex-col gap-14 px-6 py-[clamp(48px,8vw,104px)]">
-      <div className="-mb-6 flex items-center justify-between gap-4">
+      <div className="-mb-6 flex items-center">
         <Link
           to="/#projects"
           className={`inline-flex min-h-11 items-center gap-2 font-mono text-sm text-text-2 hover:text-text ${focusRing}`}
@@ -59,7 +58,6 @@ const CaseStudyPage = () => {
           <FiArrowLeft size={16} aria-hidden="true" />
           All projects
         </Link>
-        <ThemeToggle />
       </div>
 
       <header className="flex flex-col gap-5">
