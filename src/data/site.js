@@ -11,7 +11,7 @@ export const site = {
     github: "https://github.com/Muneeb077",
     linkedin: "https://www.linkedin.com/in/muneeb130779/",
     resume: "[RESUME_URL]",          // e.g. a PDF in /public
-    email: "murehman077@gmail.com",                
+    email: "murehman077@gmail.com",
   },
   about: {
     heading: "I like turning messy data and rough ideas into tools people can actually use.",
@@ -33,7 +33,11 @@ export const site = {
     },
   ],
   education: [
-    { dates: "2022 - 2025", title: "B.Sc. Computer Science · Memorial University" },
+    {
+      dates: "2022 - 2025",
+      title: "B.Sc. Computer Science · Memorial University of Newfoundland",
+      awards: ["Bachelor of Science - Dean's List · 2022–23, 2023–24"],
+    },
   ],
   lookingFor: "[junior / intermediate developer]",
   stack: [

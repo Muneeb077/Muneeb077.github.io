@@ -38,9 +38,16 @@ const Experience = () => {
       {site.education.map((entry, idx) => (
         <div key={idx} className="flex flex-wrap gap-x-6 gap-y-2 px-7">
           <Dates>{entry.dates}</Dates>
-          <h3 className="min-w-0 flex-[1_1_280px] font-display text-xl font-semibold text-text">
-            <RichText text={entry.title} />
-          </h3>
+          <div className="flex min-w-0 flex-[1_1_280px] flex-col gap-2">
+            <h3 className="font-display text-xl font-semibold text-text">
+              <RichText text={entry.title} />
+            </h3>
+            {entry.awards?.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {entry.awards.map(award => <Chip key={award}>{award}</Chip>)}
+              </div>
+            )}
+          </div>
         </div>
       ))}
     </section>
