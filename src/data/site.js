@@ -3,7 +3,7 @@ import profilePhoto from '../assets/ProfileImg_1.jpeg';
 export const site = {
   name: "Muneeb Ur Rehman",
   role: "Software Developer",
-  tagline: "I build full-stack web apps with React and Node, and data tools in Python.",
+  tagline: "Software developer in health tech. I automate testing and CI/CD in C++, and build full-stack apps with React and Node.",
   location: "St. John's, NL",
   status: "Open to new roles",        // shown with a green dot; set to null to hide
   photo: profilePhoto,
@@ -14,22 +14,24 @@ export const site = {
     email: "murehman077@gmail.com",
   },
   about: {
-    heading: "I like turning messy data and rough ideas into tools people can actually use.",
+    heading: "I like making software that people can rely on.",
     paragraphs: [
-      "I studied Computer Science at Memorial University of Newfoundland and have about a year of industry experience. [Right now I'm a ___ at ___, where I ___.]",
-      "Most of my side projects are full-stack JavaScript — React on the front, Node, Express and MongoDB behind it. On the data side I work in Python with Pandas and scikit-learn, from cleaning raw datasets to training and tuning models.",
+      "I studied Computer Science at Memorial University of Newfoundland and have spent the past year as a Software Developer at Voronoi Health Analytics. I started in manual testing, working through two internal releases of CAST (4.6 and 4.7) and catching crash-causing bugs before they shipped. For CAST 5.0, an external release, I moved into automation: I wrote unit and integration tests in C++ with Google Test, built them into the CI/CD pipeline, and created a bridge so other repositories could reuse the same pipeline.",
+      "Outside work, I build full-stack JavaScript apps (React on the front, Node, Express and MongoDB behind it) and data tools in Python with Pandas and scikit-learn.",
     ],
   },
   experience: [
     {
-      dates: "[2025 — Present]",
+      dates: "2025 — Present",
       title: "Software Developer",
       company: "Voronoi Health Analytics",
       bullets: [
-        "[Something you shipped, and what changed because of it]",
-        "[A problem you fixed or a process you improved — add a number if you have one]",
+        "Built the automated test suite for CAST 5.0, an external release: 50 unit tests in C++ with Google Test, plus integration tests, reaching 100% code coverage across 2 repositories.",
+        "Integrated the tests into the GitLab CI pipeline, so every change is tested automatically instead of through manual test cycles.",
+        "Designed a scalable pipeline bridge, now used by 2 repositories, that lets any repository adopt the same CI/CD pipeline without duplicating setup.",
+        "Tested CAST 4.6 and 4.7 through to internal release, finding and reporting several crash-causing bugs.",
       ],
-      tech: ["[Tech you used]"],
+      tech: ["C++", "Google Test", "CMake", "GitLab CI", "Claude Code"],
     },
     {
       dates: "[2023 — 2024]",
@@ -53,5 +55,6 @@ export const site = {
     { title: "Backend", items: ["Node.js", "Express", "Flask"] },
     { title: "Databases", items: ["MongoDB", "MySQL", "SQLite"] },
     { title: "Data & ML", items: ["Python", "Pandas", "NumPy", "SciPy", "scikit-learn", "Matplotlib"] },
+    { title: "Testing & DevOps", items: ["C++", "Google Test", "CMake", "GitLab CI"] },
   ],
 };
