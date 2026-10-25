@@ -11,7 +11,7 @@ export const site = {
     github: "https://github.com/Muneeb077",
     linkedin: "https://www.linkedin.com/in/muneeb130779/",
     resume: "[RESUME_URL]",          // e.g. a PDF in /public
-    email: "[EMAIL]",                // rendered as mailto:
+    email: "murehman077@gmail.com",                
   },
   about: {
     heading: "I like turning messy data and rough ideas into tools people can actually use.",
@@ -23,8 +23,8 @@ export const site = {
   experience: [
     {
       dates: "[2025 — Present]",
-      title: "[Job title]",
-      company: "[Company]",
+      title: "Software Developer",
+      company: "Voronoi Health Analytics",
       bullets: [
         "[Something you shipped, and what changed because of it]",
         "[A problem you fixed or a process you improved — add a number if you have one]",
@@ -33,7 +33,7 @@ export const site = {
     },
   ],
   education: [
-    { dates: "[Years]", title: "B.Sc. Computer Science · Memorial University" },
+    { dates: "2022 - 2025", title: "B.Sc. Computer Science · Memorial University" },
   ],
   lookingFor: "[junior / intermediate developer]",
   stack: [

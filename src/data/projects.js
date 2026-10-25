@@ -61,8 +61,7 @@ const allProjects = [
         summary: "ML model that lifted accuracy from a 45% baseline to 85% through feature engineering and careful EDA.",
         highlight: "45% baseline to 85%",
         tech: ["Python · scikit-learn"],
-        // TODO: set the real repo URL for this project
-        github: "[WINE_REPO_URL]",
+        github: "https://github.com/Muneeb077/VinoVision",
     },
     {
         id: "satelites-trend",
