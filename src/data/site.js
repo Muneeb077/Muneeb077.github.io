@@ -31,6 +31,15 @@ export const site = {
       ],
       tech: ["[Tech you used]"],
     },
+    {
+      dates: "[2023 — 2024]",
+      title: "Research Assistant",
+      company: "DIAG Lab",
+      bullets: [
+        "Conducted image inconsistency detection and data validation to enhance diagnostic reliability and workflow efficiency.",
+        "Executed manual annotation and data preprocessing to improve downstream ML model accuracy.",
+      ],
+    },
   ],
   education: [
     {
