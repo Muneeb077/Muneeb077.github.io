@@ -5,7 +5,6 @@ import About from '../components/home/About'
 import Experience from '../components/home/Experience'
 import Projects from '../components/home/Projects'
 import Stack from '../components/home/Stack'
-import Contact from '../components/home/Contact'
 import { site } from '../data/site'
 
 const HomePage = () => {
@@ -28,7 +27,6 @@ const HomePage = () => {
         <Experience />
         <Projects />
         <Stack />
-        <Contact />
         <footer className="font-mono text-xs text-muted">
           Built with React + Tailwind · Deployed on GitHub Pages
         </footer>

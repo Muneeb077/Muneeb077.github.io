@@ -48,7 +48,6 @@ export const site = {
       awards: ["Bachelor of Science - Dean's List · 2022–23, 2023–24"],
     },
   ],
-  lookingFor: "[junior / intermediate developer]",
   stack: [
     { title: "Frontend", items: ["React", "JavaScript", "Tailwind CSS", "Vite"] },
     { title: "Backend", items: ["Node.js", "Express", "Flask"] },

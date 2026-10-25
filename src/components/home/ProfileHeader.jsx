@@ -25,6 +25,7 @@ const ProfileHeader = () => {
       <div className="flex flex-wrap gap-2.5">
         <Button variant="outline" href={site.links.github} external>GitHub</Button>
         <Button variant="outline" href={site.links.linkedin} external>LinkedIn</Button>
+        <Button variant="outline" href={`mailto:${site.links.email}`}>Email</Button>
         <Button variant="primary" href={site.links.resume} external>Résumé (PDF)</Button>
       </div>
 
