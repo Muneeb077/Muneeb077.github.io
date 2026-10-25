@@ -1,7 +1,6 @@
 import tradePlatformCover from '../assets/Projects-pic/Trade-platform-login-pic.png';
 import realEstateCover from '../assets/Projects-pic/Real-estate-agent-pic.png';
 import satelitesCover from '../assets/Projects-pic/Satelites-poster.png';
-import covaluationCover from '../assets/Projects-pic/Covaluation-dashboard-pic.png';
 
 /**
  * Featured projects get image cards; the rest are listed under "More projects".
@@ -75,17 +74,6 @@ const allProjects = [
         coverAlt: "Satellite trends visualization poster",
         tech: ["Python · Pandas"],
         github: "https://github.com/Muneeb077/Satellites-trend-visualization",
-    },
-    {
-        id: "covalutation",
-        title: "Covaluation",
-        featured: false,
-        order: 5,
-        summary: "Team-built peer review platform where students review teammates and track how often reviews are read.",
-        cover: covaluationCover,
-        coverAlt: "Covaluation peer review dashboard",
-        tech: ["Python · SQLite"],
-        github: "https://github.com/CS2005F23/term-project-teame",
     },
 ];
 
