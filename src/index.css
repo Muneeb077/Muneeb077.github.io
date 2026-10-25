@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+    --color-ink: #0F1115;
+    --color-surface: #171A21;
+    --color-line: #262A33;
+    --color-line-strong: #2E333D;
+    --color-rule: #3A3F4A;
+    --color-text: #ECEDEF;
+    --color-text-2: #C9CDD4;
+    --color-muted: #A1A6B0;
+    --color-accent: #A78BFA;
+    --color-on-accent: #0F1115;
+    --color-status: #4ADE80;
+    --color-placeholder-bg: rgba(167, 139, 250, 0.14);
+    --color-placeholder: #D8CCFF;
+}
+
+/* Light theme: same tokens, re-pointed. Every pair still meets WCAG AA on ink and surface. */
+:root[data-theme="light"] {
+    --color-ink: #F7F7F8;
+    --color-surface: #FFFFFF;
+    --color-line: #E3E5E9;
+    --color-line-strong: #D4D7DD;
+    --color-rule: #C2C6CE;
+    --color-text: #14161B;
+    --color-text-2: #3A3F4A;
+    --color-muted: #5B616D;
+    --color-accent: #6D28D9;
+    --color-on-accent: #FFFFFF;
+    --color-status: #15803D;
+    --color-placeholder-bg: rgba(109, 40, 217, 0.10);
+    --color-placeholder: #5B21B6;
+    color-scheme: light;
+}
+
+@layer base {
+    html {
+        font-family: var(--font-sans);
+        scroll-behavior: smooth;
+        color-scheme: dark;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+
+    body {
+        background-color: var(--color-ink);
+        color: var(--color-text);
+        font-size: 17px;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+}
