@@ -28,9 +28,11 @@ const Experience = () => {
                 <li key={bulletIdx}><RichText text={bullet} /></li>
               ))}
             </ul>
-            <div className="flex flex-wrap gap-2">
-              {job.tech.map(t => <Chip key={t}>{t}</Chip>)}
-            </div>
+            {job.tech?.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {job.tech.map(t => <Chip key={t}>{t}</Chip>)}
+              </div>
+            )}
           </div>
         </Card>
       ))}
