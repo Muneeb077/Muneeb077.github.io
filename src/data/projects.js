@@ -1,5 +1,4 @@
 import tradePlatformCover from '../assets/Projects-pic/Trade-platform-login-pic.png';
-import expenseTrackerCover from '../assets/Projects-pic/Expense-tracker-pic.png';
 import realEstateCover from '../assets/Projects-pic/Real-estate-agent-pic.png';
 import satelitesCover from '../assets/Projects-pic/Satelites-poster.png';
 import covaluationCover from '../assets/Projects-pic/Covaluation-dashboard-pic.png';
@@ -44,23 +43,10 @@ const allProjects = [
         },
     },
     {
-        id: "track-my-spending",
-        title: "Expense Tracker",
-        featured: true,
-        order: 2,
-        kind: "Full-stack",
-        summary: "A personal finance dashboard that logs income and expenses, then charts earnings trends and spending over time.",
-        cover: expenseTrackerCover,
-        coverAlt: "Expense Tracker dashboard with income and expense charts",
-        tech: ["React", "Express", "MongoDB"],
-        github: "https://github.com/Muneeb077/track-my-spending",
-        demo: "[DEMO_URL]",
-    },
-    {
         id: "real-estate-db",
         title: "Real Estate Manager",
         featured: true,
-        order: 3,
+        order: 2,
         kind: "Python · SQL",
         summary: "A property system with two sides: clients browse and filter listings, admins manage the database and add new properties.",
         cover: realEstateCover,
@@ -72,7 +58,7 @@ const allProjects = [
         id: "wine-accracy-model",
         title: "Wine Quality Prediction",
         featured: false,
-        order: 4,
+        order: 3,
         summary: "ML model that lifted accuracy from a 45% baseline to 85% through feature engineering and careful EDA.",
         highlight: "45% baseline to 85%",
         tech: ["Python · scikit-learn"],
@@ -83,7 +69,7 @@ const allProjects = [
         id: "satelites-trend",
         title: "Satellite Trends Dashboard",
         featured: false,
-        order: 5,
+        order: 4,
         summary: "Cleaned and transformed satellite datasets, then built an interactive dashboard to explore trends. Course project, COMP 4304.",
         cover: satelitesCover,
         coverAlt: "Satellite trends visualization poster",
@@ -94,21 +80,12 @@ const allProjects = [
         id: "covalutation",
         title: "Covaluation",
         featured: false,
-        order: 6,
+        order: 5,
         summary: "Team-built peer review platform where students review teammates and track how often reviews are read.",
         cover: covaluationCover,
         coverAlt: "Covaluation peer review dashboard",
         tech: ["Python · SQLite"],
         github: "https://github.com/CS2005F23/term-project-teame",
-    },
-    {
-        id: "minesweeper",
-        title: "Minesweeper",
-        featured: false,
-        order: 7,
-        summary: "A desktop clone of the classic game, with full reveal, flagging and win/lose logic.",
-        tech: ["Python · Tkinter"],
-        github: "https://github.com/Muneeb077/MineSweeper",
     },
 ];
 
