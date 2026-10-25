@@ -31,10 +31,10 @@ export const site = {
         "Designed a scalable pipeline bridge, now used by 2 repositories, that lets any repository adopt the same CI/CD pipeline without duplicating setup.",
         "Tested CAST 4.6 and 4.7 through to internal release, finding and reporting several crash-causing bugs.",
       ],
-      tech: ["C++", "Google Test", "CMake", "GitLab CI", "Claude Code"],
+      tech: ["C++", "Google Test", "CMake", "GitLab CI"],
     },
     {
-      dates: "[2023 — 2024]",
+      dates: "2023 — 2024",
       title: "Research Assistant",
       company: "DIAG Lab",
       bullets: [
