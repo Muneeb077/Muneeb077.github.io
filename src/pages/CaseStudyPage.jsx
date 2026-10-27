@@ -72,8 +72,6 @@ const CaseStudyPage = () => {
 
       <div className="flex flex-col gap-6">
         <div className="flex flex-wrap gap-px overflow-hidden rounded-2xl border border-line bg-line">
-          <MetaCell label="Role" value={study.role} />
-          <MetaCell label="Timeline" value={study.timeline} />
           <MetaCell label="Stack" value={study.stackLine} wide />
         </div>
         <div className="flex flex-wrap gap-2.5">
@@ -119,7 +117,6 @@ const CaseStudyPage = () => {
       </section>
 
       <TextBlock title="What was hard, and what I learned" text={study.learned} />
-      <TextBlock title="What's next" text={study.next} />
 
       <Link to={nextTo} className={`group block rounded-2xl ${focusRing}`}>
         <Card className="flex items-center justify-between gap-4 p-7 transition-colors motion-reduce:transition-none group-hover:border-line-strong">

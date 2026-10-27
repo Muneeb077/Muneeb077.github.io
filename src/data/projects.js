@@ -21,8 +21,6 @@ const allProjects = [
         github: "https://github.com/Muneeb077/Trade-Platform",
         demo: "[DEMO_URL]",
         caseStudy: {
-            role: "[Solo developer]",
-            timeline: "[X weeks, 2025]",
             stackLine: "React · Node · Express · MongoDB · Tailwind · Vite",
             heroAlt: "Trade Platform sign-in screen beside a daily profit and loss bar chart",
             heroCaption: "Sign-in with email or Google, next to the daily profit/loss chart.",
@@ -38,7 +36,6 @@ const allProjects = [
                 { title: "Auth", body: "[How sessions work — JWT, cookies, OAuth for Google — and how routes are protected.]" },
             ],
             learned: "[One real bug or obstacle, how you tracked it down, and what you'd do differently now.]",
-            next: "[1–2 improvements you'd ship next, e.g. real-time prices, tests, deployment.]",
         },
     },
     {
@@ -54,7 +51,6 @@ const allProjects = [
         tech: ["Next.js", "Flask", "MySQL", "Redis", "Docker"],
         github: "https://github.com/Muneeb077/Real-Estate-DB",
         caseStudy: {
-            role: "[Solo developer]",
             stackLine: "Next.js · React · Tailwind · Flask · SQLAlchemy · MySQL 9 · Redis/RQ · Nginx · Docker",
             heroAlt: "HomeNest search page: listing cards on the left, a Leaflet map of Lisbon with nightly price pins on the right",
             heroCaption: "Map search with \"search as I move the map\", filtering stays in Lisbon.",
