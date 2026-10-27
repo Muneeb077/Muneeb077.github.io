@@ -55,7 +55,6 @@ const allProjects = [
         github: "https://github.com/Muneeb077/Real-Estate-DB",
         caseStudy: {
             role: "[Solo developer]",
-            timeline: "[X weeks, 2026]",
             stackLine: "Next.js · React · Tailwind · Flask · SQLAlchemy · MySQL 9 · Redis/RQ · Nginx · Docker",
             heroAlt: "HomeNest search page: listing cards on the left, a Leaflet map of Lisbon with nightly price pins on the right",
             heroCaption: "Map search with \"search as I move the map\", filtering stays in Lisbon.",
@@ -73,7 +72,6 @@ const allProjects = [
                 { title: "Append-only audit", body: "Triggers on 8 tables write old and new values to an audit log partitioned by year. Two more triggers block UPDATE and DELETE on it, even for the app's own database account." },
             ],
             learned: "The hardest part was making double-booking impossible under concurrency. Row locking inside the booking procedure handles the normal path, and an overlap trigger catches any write that bypasses it. A test fires 4 concurrent requests for the same dates and asserts only one survives. All 30 tests run against a real MySQL rebuilt from the migrations, with nothing mocked. Under a Locust load test of 300 concurrent users the public read path served 15,384 requests with 0 failures and a p95 of 8 ms.",
-            next: "[1–2 improvements you'd ship next, e.g. public deployment, real payment payouts, mobile layout polish.]",
         },
     },
     {
