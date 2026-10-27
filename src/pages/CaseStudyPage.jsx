@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { FiArrowLeft, FiArrowRight } from 'react-icons/fi'
+import { FiArrowLeft, FiArrowRight, FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi'
 import SectionLabel from '../components/SectionLabel'
 import Card from '../components/Card'
 import Button from '../components/Button'
@@ -26,6 +26,86 @@ const MetaCell = ({ label, value, wide = false }) => (
     <p className="font-medium text-text"><RichText text={value} /></p>
   </div>
 )
+
+const iconButton = `inline-flex size-11 items-center justify-center rounded-full border border-line bg-surface text-text hover:border-line-strong ${focusRing}`;
+
+const Gallery = ({ images }) => {
+  const dialogRef = useRef(null);
+  const [active, setActive] = useState(null);
+
+  const open = (idx) => {
+    setActive(idx);
+    dialogRef.current?.showModal();
+  }
+  const step = (delta) => setActive(i => (i + delta + images.length) % images.length);
+
+  const onKeyDown = (e) => {
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'ArrowLeft') step(-1);
+  }
+
+  const current = active !== null ? images[active] : null;
+
+  return (
+    <section className="flex flex-col gap-5">
+      <H2>Screenshots</H2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {images.map((image, idx) => (
+          <figure key={image.src} className="flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={() => open(idx)}
+              aria-label={`Enlarge screenshot: ${image.caption}`}
+              className={`group block overflow-hidden rounded-2xl border border-line ${focusRing}`}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                className="aspect-[16/10] h-auto w-full object-cover object-top transition-transform duration-300 motion-reduce:transition-none group-hover:scale-[1.02]"
+              />
+            </button>
+            <figcaption className="font-mono text-[13px] text-muted">{image.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <dialog
+        ref={dialogRef}
+        onClose={() => setActive(null)}
+        onKeyDown={onKeyDown}
+        onClick={e => { if (e.target === dialogRef.current) dialogRef.current.close(); }}
+        aria-label="Screenshot viewer"
+        className="m-auto max-h-none max-w-none bg-transparent p-4 backdrop:bg-ink/90"
+      >
+        {current && (
+          <div className="flex w-[min(1200px,calc(100vw-32px))] flex-col gap-3">
+            <div className="flex items-center justify-between gap-4">
+              <p className="font-mono text-[13px] text-muted">{active + 1} / {images.length}</p>
+              <button type="button" onClick={() => dialogRef.current.close()} aria-label="Close" className={iconButton}>
+                <FiX size={20} aria-hidden="true" />
+              </button>
+            </div>
+            <img
+              src={current.src}
+              alt={current.alt}
+              className="max-h-[calc(100vh-200px)] w-full rounded-2xl border border-line object-contain"
+            />
+            <div className="flex items-center justify-between gap-4">
+              <button type="button" onClick={() => step(-1)} aria-label="Previous screenshot" className={iconButton}>
+                <FiChevronLeft size={20} aria-hidden="true" />
+              </button>
+              <p className="text-center font-mono text-[13px] text-text-2">{current.caption}</p>
+              <button type="button" onClick={() => step(1)} aria-label="Next screenshot" className={iconButton}>
+                <FiChevronRight size={20} aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+        )}
+      </dialog>
+    </section>
+  )
+}
 
 const getNextFeatured = (project) => {
   const featured = projects.filter(p => p.featured);
@@ -103,6 +183,8 @@ const CaseStudyPage = () => {
           ))}
         </div>
       </section>
+
+      {study.gallery?.length > 0 && <Gallery images={study.gallery} />}
 
       <section className="flex flex-col gap-5">
         <H2>Key decisions</H2>

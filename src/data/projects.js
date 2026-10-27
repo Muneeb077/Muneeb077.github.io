@@ -1,10 +1,16 @@
 import tradePlatformCover from '../assets/Projects-pic/Trade-platform-login-pic.png';
 import realEstateCover from '../assets/Projects-pic/HomeNest-search-map.jpg';
+import homeNestHome from '../assets/Projects-pic/HomeNest-home.jpg';
+import homeNestListing from '../assets/Projects-pic/HomeNest-listing.jpg';
+import homeNestSearchDark from '../assets/Projects-pic/HomeNest-search-dark.jpg';
+import homeNestHostDashboard from '../assets/Projects-pic/HomeNest-host-dashboard.jpg';
+import homeNestAdminOverview from '../assets/Projects-pic/HomeNest-admin-overview.jpg';
 import satelitesCover from '../assets/Projects-pic/Satelites-poster.png';
 
 /**
  * Featured projects get image cards; the rest are listed under "More projects".
  * Optional fields: demo (hides the button when undefined), highlight, caseStudy.
+ * caseStudy.gallery is an optional list of { src, alt, caption } screenshots.
  * @type {Array<Object>}
  */
 const allProjects = [
@@ -54,6 +60,13 @@ const allProjects = [
             stackLine: "Next.js · React · Tailwind · Flask · SQLAlchemy · MySQL 9 · Redis/RQ · Nginx · Docker",
             heroAlt: "HomeNest search page: listing cards on the left, a Leaflet map of Lisbon with nightly price pins on the right",
             heroCaption: "Map search with \"search as I move the map\", filtering stays in Lisbon.",
+            gallery: [
+                { src: homeNestHome, alt: "HomeNest home page: headline, a Stays / Rent / Buy search bar with location, keywords, dates and guests, and popular destination cards", caption: "Home: one search bar for stays, rentals and sales, no account needed." },
+                { src: homeNestListing, alt: "Listing page for a 5 bed townhouse in Lisbon with a photo grid, room details, host info and a $154 per night booking panel", caption: "Listing: photo grid, verified host and a booking panel that holds dates for 30 minutes." },
+                { src: homeNestSearchDark, alt: "Dark mode search of homes for sale in Paris, listing cards beside a map with sale price pins", caption: "Dark mode: homes for sale in Paris, with price pins on the map." },
+                { src: homeNestHostDashboard, alt: "Host dashboard with payout, live listing and upcoming stay totals, a monthly payout bar chart and a list of upcoming stays", caption: "Host dashboard: payouts from the HostEarnings procedure and upcoming stays." },
+                { src: homeNestAdminOverview, alt: "Admin platform overview with GMV, revenue and user KPIs, monthly GMV charts for stays, rentals and sales, top hosts and median price by city", caption: "Admin overview: KPIs and GMV computed in MySQL with CTEs and window functions." },
+            ],
             problem: "The first version was a basic property manager: clients browsed listings, admins edited the database. It exposed sequential ids in URLs and its sell procedure committed the status change before writing the transaction, so sales always failed. I rebuilt it as a real three-sided marketplace (guests, hosts, admins) where the database itself guarantees the rules that matter: no double bookings, atomic sales, and an audit trail nobody can edit.",
             features: [
                 { title: "Map search", body: "Anyone can browse 50,000 listings in 34 cities without an account. Filters, full-text keywords, date availability, infinite scroll, and a Leaflet map with price pins that re-searches as you pan." },
