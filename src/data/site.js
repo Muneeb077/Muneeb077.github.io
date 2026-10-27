@@ -34,7 +34,7 @@ export const site = {
       tech: ["C++", "Google Test", "CMake", "GitLab CI"],
     },
     {
-      dates: "2023 — 2024",
+      dates: "2023 — 2025",
       title: "Research Assistant",
       company: "DIAG Lab",
       bullets: [

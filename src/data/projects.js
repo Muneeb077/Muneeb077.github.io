@@ -1,5 +1,5 @@
 import tradePlatformCover from '../assets/Projects-pic/Trade-platform-login-pic.png';
-import realEstateCover from '../assets/Projects-pic/Real-estate-agent-pic.png';
+import realEstateCover from '../assets/Projects-pic/HomeNest-search-map.jpg';
 import satelitesCover from '../assets/Projects-pic/Satelites-poster.png';
 
 /**
@@ -43,15 +43,38 @@ const allProjects = [
     },
     {
         id: "real-estate-db",
-        title: "Real Estate Manager",
+        title: "HomeNest — Real Estate Marketplace",
         featured: true,
         order: 2,
-        kind: "Python · SQL",
-        summary: "A property system with two sides: clients browse and filter listings, admins manage the database and add new properties.",
+        kind: "Full-stack · MySQL",
+        summary: "A marketplace to buy, rent, or book a stay across 50,000 listings on a live map. Guests, hosts and admins each get their own tools, built on a hand-written MySQL layer with encryption at rest.",
+        highlight: "50,000 listings",
         cover: realEstateCover,
-        coverAlt: "Real Estate Manager admin view for managing property listings",
-        tech: ["Python", "Flask", "MySQL"],
+        coverAlt: "HomeNest map search with price pins beside a grid of listing cards",
+        tech: ["Next.js", "Flask", "MySQL", "Redis", "Docker"],
         github: "https://github.com/Muneeb077/Real-Estate-DB",
+        caseStudy: {
+            role: "[Solo developer]",
+            timeline: "[X weeks, 2026]",
+            stackLine: "Next.js · React · Tailwind · Flask · SQLAlchemy · MySQL 9 · Redis/RQ · Nginx · Docker",
+            heroAlt: "HomeNest search page: listing cards on the left, a Leaflet map of Lisbon with nightly price pins on the right",
+            heroCaption: "Map search with \"search as I move the map\", filtering stays in Lisbon.",
+            problem: "The first version was a basic property manager: clients browsed listings, admins edited the database. It exposed sequential ids in URLs and its sell procedure committed the status change before writing the transaction, so sales always failed. I rebuilt it as a real three-sided marketplace (guests, hosts, admins) where the database itself guarantees the rules that matter: no double bookings, atomic sales, and an audit trail nobody can edit.",
+            features: [
+                { title: "Map search", body: "Anyone can browse 50,000 listings in 34 cities without an account. Filters, full-text keywords, date availability, infinite scroll, and a Leaflet map with price pins that re-searches as you pan." },
+                { title: "Bookings & offers", body: "Guests book stays with a live quote, a 30-minute hold and payment (Stripe Checkout when keys are set), make purchase offers, request viewings and message hosts over encrypted chat." },
+                { title: "Host tools", body: "A listing editor with map pin, photo upload (EXIF-stripped, WebP), blocked dates, seasonal and weekend price rules, an offers inbox and an earnings dashboard." },
+                { title: "Admin console", body: "Platform KPIs and GMV charts, median price by city, moderation queue, host verification, user management, an audit log viewer and one-click encrypted backups." },
+            ],
+            decisions: [
+                { title: "Logic in the database", body: "Booking, cancellation and offer acceptance are stored procedures. CreateBooking locks the listing row with SELECT … FOR UPDATE and uses idempotency keys; AcceptOffer closes a sale, supersedes competing offers and records the transaction in one step. Search is dynamic SQL combining FULLTEXT, a SPATIAL index and keyset pagination." },
+                { title: "Encryption at rest", body: "Emails, phone numbers, host licenses and messages are stored as ciphertext. Blind indexes keep encrypted emails searchable, the key-encryption key can be rotated, and backups are encrypted with tamper detection." },
+                { title: "Ids and roles", body: "BIGINT keys internally, ULIDs in every URL so nothing is enumerable. Roles live in a join table, so one account can both book and host." },
+                { title: "Append-only audit", body: "Triggers on 8 tables write old and new values to an audit log partitioned by year. Two more triggers block UPDATE and DELETE on it, even for the app's own database account." },
+            ],
+            learned: "The hardest part was making double-booking impossible under concurrency. Row locking inside the booking procedure handles the normal path, and an overlap trigger catches any write that bypasses it. A test fires 4 concurrent requests for the same dates and asserts only one survives. All 30 tests run against a real MySQL rebuilt from the migrations, with nothing mocked. Under a Locust load test of 300 concurrent users the public read path served 15,384 requests with 0 failures and a p95 of 8 ms.",
+            next: "[1–2 improvements you'd ship next, e.g. public deployment, real payment payouts, mobile layout polish.]",
+        },
     },
     {
         id: "wine-accracy-model",
