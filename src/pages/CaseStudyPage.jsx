@@ -169,8 +169,6 @@ const CaseStudyPage = () => {
         <figcaption className="font-mono text-[13px] text-muted">{study.heroCaption}</figcaption>
       </figure>
 
-      <TextBlock title="The problem" text={study.problem} />
-
       <section className="flex flex-col gap-5">
         <H2>What I built</H2>
         <div className="flex flex-wrap gap-4">

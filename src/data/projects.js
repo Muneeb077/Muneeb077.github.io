@@ -30,7 +30,6 @@ const allProjects = [
             stackLine: "React · Node · Express · MongoDB · Tailwind · Vite",
             heroAlt: "Trade Platform sign-in screen beside a daily profit and loss bar chart",
             heroCaption: "Sign-in with email or Google, next to the daily profit/loss chart.",
-            problem: "[2–3 sentences: why you built this, who it's for, and what was missing from what already existed.]",
             features: [
                 { title: "Accounts & sign-in", body: "Email and password login, plus Google sign-in." },
                 { title: "Buy & sell", body: "A transactions module for placing trades and keeping a record of each one." },
@@ -67,7 +66,6 @@ const allProjects = [
                 { src: homeNestHostDashboard, alt: "Host dashboard with payout, live listing and upcoming stay totals, a monthly payout bar chart and a list of upcoming stays", caption: "Host dashboard: payouts from the HostEarnings procedure and upcoming stays." },
                 { src: homeNestAdminOverview, alt: "Admin platform overview with GMV, revenue and user KPIs, monthly GMV charts for stays, rentals and sales, top hosts and median price by city", caption: "Admin overview: KPIs and GMV computed in MySQL with CTEs and window functions." },
             ],
-            problem: "The first version was a basic property manager: clients browsed listings, admins edited the database. It exposed sequential ids in URLs and its sell procedure committed the status change before writing the transaction, so sales always failed. I rebuilt it as a real three-sided marketplace (guests, hosts, admins) where the database itself guarantees the rules that matter: no double bookings, atomic sales, and an audit trail nobody can edit.",
             features: [
                 { title: "Map search", body: "Anyone can browse 50,000 listings in 34 cities without an account. Filters, full-text keywords, date availability, infinite scroll, and a Leaflet map with price pins that re-searches as you pan." },
                 { title: "Bookings & offers", body: "Guests book stays with a live quote, a 30-minute hold and payment (Stripe Checkout when keys are set), make purchase offers, request viewings and message hosts over encrypted chat." },
