@@ -10,7 +10,7 @@ export const site = {
   links: {
     github: "https://github.com/Muneeb077",
     linkedin: "https://www.linkedin.com/in/muneeb130779/",
-    resume: "[RESUME_URL]",          // e.g. a PDF in /public
+    resume: "/Resume.pdf",
     email: "murehman077@gmail.com",
   },
   about: {
