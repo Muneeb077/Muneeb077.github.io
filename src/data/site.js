@@ -26,7 +26,7 @@ export const site = {
       title: "Software Developer",
       company: "Voronoi Health Analytics",
       bullets: [
-        "Built the automated test suite for CAST 5.0, an external release: 50 unit tests in C++ with Google Test, plus integration tests, reaching 100% code coverage across 2 repositories.",
+        "Built the automated test suite for CAST 5.0, an external release: 65 unit tests in C++ with Google Test, plus integration tests, reaching 100% code coverage across 2 repositories.",
         "Integrated the tests into the GitLab CI pipeline, so every change is tested automatically instead of through manual test cycles.",
         "Designed a scalable pipeline bridge, now used by 2 repositories, that lets any repository adopt the same CI/CD pipeline without duplicating setup.",
         "Tested CAST 4.6 and 4.7 through to internal release, finding and reporting several crash-causing bugs.",
