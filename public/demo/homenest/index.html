@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeNest · Live demo</title>
+<style>
+:root{--accent:#e0384f;--bg:#f6f7f9;--panel:#fff;--text:#1a1d23;--muted:#5d6470;--line:#e2e5ea}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--panel:#1b1e23;--text:#e8eaed;--muted:#9aa1ab;--line:#2c3038}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1200px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 20px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:8px 14px;border-radius:999px;cursor:pointer;font:inherit}
+.tabs button[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.desc{color:var(--muted);margin:0 0 12px;min-height:1.5em}
+.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.chrome{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.chrome i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.screen{position:relative;width:100%}
+.screen img{display:block;width:100%;height:auto;user-select:none}
+.hot{position:absolute;border:2px solid var(--accent);border-radius:8px;cursor:pointer;background:color-mix(in srgb,var(--accent) 12%,transparent);animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}100%{box-shadow:0 0 0 14px transparent}}
+@media (prefers-reduced-motion:reduce){.hot{animation:none}}
+.hot.flash{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+.bar{display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.cap{flex:1;min-width:200px}
+.cap b{display:block}
+.typed{display:inline-block;margin-top:4px;font-size:.85rem;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 8px}
+.nav{display:flex;gap:8px;align-items:center}
+.nav button{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}
+.nav button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.nav button:disabled{opacity:.4;cursor:default}
+.count{color:var(--muted);font-size:.9rem;min-width:4em;text-align:center}
+.dots{display:flex;gap:6px;justify-content:center;padding:0 0 14px}
+.dots span{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer}
+.dots span.on{background:var(--accent)}
+video{display:block;width:100%;background:#000}
+button:focus-visible,.hot:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hint{color:var(--muted);font-size:.85rem;margin-top:12px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+  <h1>HomeNest</h1>
+  <p class="sub">Interactive walkthrough. Click the highlighted area, or use the arrow keys.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <p class="desc" id="desc"></p>
+  <div class="stage">
+    <div class="chrome"><i></i><i></i><i></i></div>
+    <div class="screen" id="screen"></div>
+    <div class="bar">
+      <div class="cap" id="cap"></div>
+      <div class="nav">
+        <button id="video" hidden>Watch video</button>
+        <button id="prev">Back</button>
+        <span class="count" id="count"></span>
+        <button id="next" class="primary">Next</button>
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <p class="hint">Screenshots recorded from the running app.</p>
+</main>
+<script>
+const FLOWS = [{"name": "Map search", "description": "Browse 50,000 listings on a live map. No account needed.", "frames": [{"src": "assets/map-search-01.png", "caption": "Search by city from the home page", "typed": "Lisbon", "hotspot": {"l": 12.430555555555555, "t": 50.22222222222222, "w": 18.32790798611111, "h": 6.222222222222222}, "ratio": 1.6}, {"src": "assets/map-search-02.png", "caption": "Run the search", "typed": null, "hotspot": {"l": 72.96875, "t": 50.22222222222222, "w": 9.04513888888889, "h": 6.222222222222222}, "ratio": 1.6}, {"src": "assets/map-search-03.png", "caption": "Results and price pins stay in sync: hover a listing to highlight it on the map", "typed": null, "hotspot": {"l": 1.25, "t": 15.11111111111111, "w": 18.040364583333332, "h": 33.53819444444445}, "ratio": 1.6}, {"src": "assets/map-search-04.png", "caption": "Open a listing", "typed": null, "hotspot": {"l": 1.25, "t": 15.11111111111111, "w": 18.040364583333332, "h": 33.53819444444445}, "ratio": 1.6}, {"src": "assets/map-search-05.png", "caption": "Listing page: photo gallery, details and the booking widget", "typed": null, "hotspot": null, "ratio": 1.6}, {"src": "assets/map-search-06.png", "caption": "Approximate-area map and reviews; the exact address stays hidden until a booking is confirmed", "typed": null, "hotspot": null, "ratio": 1.6}], "video": "assets/map-search.webm"}, {"name": "Book a stay", "description": "A guest books a stay: live quote, a 30-minute hold, payment, then the address is decrypted.", "frames": [{"src": "assets/book-a-stay-01.png", "caption": "Log in with the demo guest account", "typed": "guest@homenest.dev", "hotspot": {"l": 36.25, "t": 29.666666666666668, "w": 27.500000000000004, "h": 4.888888888888889}, "ratio": 1.6}, {"src": "assets/book-a-stay-02.png", "caption": "Log in", "typed": null, "hotspot": {"l": 36.25, "t": 42.55555555555556, "w": 27.500000000000004, "h": 4.888888888888889}, "ratio": 1.6}, {"src": "assets/book-a-stay-03.png", "caption": "Pick dates in the booking widget", "typed": null, "hotspot": {"l": 62.638888888888886, "t": 77.22222222222223, "w": 25.0, "h": 6.222222222222222}, "ratio": 1.6}, {"src": "assets/book-a-stay-04.png", "caption": "Choose check-in; booked dates are greyed out", "typed": null, "hotspot": {"l": 72.91666666666666, "t": 64.80902777777777, "w": 2.7777777777777777, "h": 4.444444444444445}, "ratio": 1.6}, {"src": "assets/book-a-stay-05.png", "caption": "Choose check-out", "typed": null, "hotspot": {"l": 65.13888888888889, "t": 68.80902777777777, "w": 2.7777777777777777, "h": 4.444444444444445}, "ratio": 1.6}, {"src": "assets/book-a-stay-06.png", "caption": "Set the number of guests", "typed": "2", "hotspot": {"l": 66.67426215277777, "t": 83.44444444444444, "w": 20.96462673611111, "h": 4.888888888888889}, "ratio": 1.6}, {"src": "assets/book-a-stay-07.png", "caption": "The live quote updates instantly. Reserve holds the dates for 30 minutes", "typed": null, "hotspot": {"l": 62.638888888888886, "t": 47.333333333333336, "w": 25.0, "h": 5.333333333333334}, "ratio": 1.6}, {"src": "assets/book-a-stay-08.png", "caption": "Trip page: pay to confirm (simulated payment)", "typed": null, "hotspot": {"l": 51.52777777777777, "t": 47.66666666666667, "w": 27.22222222222222, "h": 4.888888888888889}, "ratio": 1.6}, {"src": "assets/book-a-stay-09.png", "caption": "Confirmed: the exact address and host phone are decrypted only for this guest", "typed": null, "hotspot": null, "ratio": 1.6}], "video": "assets/book-a-stay.webm"}];
+let f = 0, i = 0, showVideo = false;
+const $ = id => document.getElementById(id);
+
+function renderTabs() {
+  $('tabs').innerHTML = '';
+  FLOWS.forEach((fl, k) => {
+    const b = document.createElement('button');
+    b.role = 'tab'; b.textContent = fl.name; b.setAttribute('aria-selected', k === f);
+    b.onclick = () => { f = k; i = 0; showVideo = false; render(); };
+    $('tabs').appendChild(b);
+  });
+}
+
+function render() {
+  renderTabs();
+  const fl = FLOWS[f], fr = fl.frames[i];
+  $('desc').textContent = fl.description || '';
+  const screen = $('screen');
+  screen.innerHTML = '';
+  // Reserve the frame's height up front so hotspots never sit over an empty, still-loading image.
+  screen.style.aspectRatio = showVideo && fl.video ? '' : String(fr.ratio);
+  $('video').hidden = !fl.video;
+  $('video').textContent = showVideo ? 'Back to walkthrough' : 'Watch video';
+  if (showVideo && fl.video) {
+    const v = document.createElement('video');
+    v.src = fl.video; v.controls = true; v.autoplay = true; v.muted = true; v.playsInline = true;
+    screen.appendChild(v);
+  } else {
+    const img = new Image();
+    img.src = fr.src; img.alt = fr.caption; img.draggable = false;
+    img.onclick = () => flash();
+    screen.appendChild(img);
+    if (fr.hotspot && i < fl.frames.length - 1) {
+      const h = document.createElement('button');
+      h.className = 'hot'; h.setAttribute('aria-label', fr.caption);
+      Object.assign(h.style, {left: fr.hotspot.l + '%', top: fr.hotspot.t + '%', width: fr.hotspot.w + '%', height: fr.hotspot.h + '%'});
+      h.onclick = e => { e.stopPropagation(); go(1); };
+      screen.appendChild(h);
+    }
+    // Preload the next frame so clicks feel instant.
+    if (fl.frames[i + 1]) new Image().src = fl.frames[i + 1].src;
+  }
+  $('cap').innerHTML = '';
+  const b = document.createElement('b'); b.textContent = fr.caption; $('cap').appendChild(b);
+  if (fr.typed) { const t = document.createElement('span'); t.className = 'typed'; t.textContent = 'Types: ' + fr.typed; $('cap').appendChild(t); }
+  $('count').textContent = (i + 1) + ' / ' + fl.frames.length;
+  $('prev').disabled = i === 0 && f === 0;
+  const last = i === fl.frames.length - 1;
+  $('next').textContent = last ? (f < FLOWS.length - 1 ? 'Next flow' : 'Restart') : 'Next';
+  $('dots').innerHTML = '';
+  fl.frames.forEach((_, k) => {
+    const d = document.createElement('span'); if (k === i) d.className = 'on';
+    d.onclick = () => { i = k; showVideo = false; render(); };
+    $('dots').appendChild(d);
+  });
+}
+
+function go(step) {
+  showVideo = false;
+  const fl = FLOWS[f];
+  i += step;
+  if (i >= fl.frames.length) { f = (f + 1) % FLOWS.length; i = 0; }
+  if (i < 0) { if (f > 0) { f--; i = FLOWS[f].frames.length - 1; } else i = 0; }
+  render();
+}
+
+function flash() {
+  const h = document.querySelector('.hot');
+  if (!h) return go(1);
+  h.classList.add('flash'); setTimeout(() => h.classList.remove('flash'), 400);
+}
+
+$('next').onclick = () => go(1);
+$('prev').onclick = () => go(-1);
+$('video').onclick = () => { showVideo = !showVideo; render(); };
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+render();
+</script>
+</body>
+</html>

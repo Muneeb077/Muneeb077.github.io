@@ -55,6 +55,7 @@ const allProjects = [
         coverAlt: "HomeNest map search with price pins beside a grid of listing cards",
         tech: ["Next.js", "Flask", "MySQL", "Redis", "Docker"],
         github: "https://github.com/Muneeb077/Real-Estate-DB",
+        demo: "/demo/homenest/index.html",
         caseStudy: {
             stackLine: "Next.js · React · Tailwind · Flask · SQLAlchemy · MySQL 9 · Redis/RQ · Nginx · Docker",
             heroAlt: "HomeNest search page: listing cards on the left, a Leaflet map of Lisbon with nightly price pins on the right",
