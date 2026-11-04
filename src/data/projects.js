@@ -56,7 +56,6 @@ const allProjects = [
                 { title: "Security hardening", body: "Mongoose's sanitizeFilter is on and auth fields must be strings, which blocks NoSQL operator injection. REST and socket events are rate limited, with a lockout on failed room-code guesses. Google sign-in only links to an existing account when Google has verified the email." },
                 { title: "Testing", body: "109 backend tests on node:test, including socket integration against an in-memory MongoDB, 21 vitest tests for the client reducer and helpers, and a Playwright suite where two browsers play a full round." },
             ],
-            learned: "[One real bug or obstacle from the rebuild, how you tracked it down, and what you'd do differently now.]",
         },
     },
     {
@@ -95,7 +94,6 @@ const allProjects = [
                 { title: "Ids and roles", body: "BIGINT keys internally, ULIDs in every URL so nothing is enumerable. Roles live in a join table, so one account can both book and host." },
                 { title: "Append-only audit", body: "Triggers on 8 tables write old and new values to an audit log partitioned by year. Two more triggers block UPDATE and DELETE on it, even for the app's own database account." },
             ],
-            learned: "The hardest part was making double-booking impossible under concurrency. Row locking inside the booking procedure handles the normal path, and an overlap trigger catches any write that bypasses it. A test fires 4 concurrent requests for the same dates and asserts only one survives. All 30 tests run against a real MySQL rebuilt from the migrations, with nothing mocked. Under a Locust load test of 300 concurrent users the public read path served 15,384 requests with 0 failures and a p95 of 8 ms.",
         },
     },
     {

@@ -196,8 +196,6 @@ const CaseStudyPage = () => {
         </div>
       </section>
 
-      <TextBlock title="What was hard, and what I learned" text={study.learned} />
-
       <Link to={nextTo} className={`group block rounded-2xl ${focusRing}`}>
         <Card className="flex items-center justify-between gap-4 p-7 transition-colors motion-reduce:transition-none group-hover:border-line-strong">
           <div className="flex flex-col gap-1">
