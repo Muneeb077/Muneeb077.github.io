@@ -51,10 +51,10 @@ export const site = {
     },
   ],
   stack: [
-    { title: "Frontend", items: ["React", "JavaScript", "Tailwind CSS", "Vite"] },
-    { title: "Backend", items: ["Node.js", "Express", "Flask"] },
-    { title: "Databases", items: ["MongoDB", "MySQL", "SQLite"] },
+    { title: "Frontend", items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Vite"] },
+    { title: "Backend", items: ["Node.js", "Express", "Socket.IO", "Flask", "SQLAlchemy", "JWT / OAuth"] },
+    { title: "Databases", items: ["MongoDB", "MySQL", "Redis", "SQLite"] },
     { title: "Data & ML", items: ["Python", "Pandas", "NumPy", "SciPy", "scikit-learn", "Matplotlib"] },
-    { title: "Testing & DevOps", items: ["C++", "Google Test", "CMake", "GitLab CI"] },
+    { title: "Testing & DevOps", items: ["C++", "Google Test", "Pytest", "Playwright", "Vitest", "Docker", "GitLab CI", "GitHub Actions", "CMake"] },
   ],
 };
