@@ -33,7 +33,7 @@ const allProjects = [
         tech: ["React", "Socket.IO", "Express", "MongoDB", "Tailwind"],
         github: "https://github.com/Muneeb077/Trade-Platform",
         demo: "/demo/trade-game/index.html",
-        live: "https://trade-platform-git-main-muneeb077s-projects.vercel.app/login",
+        live: "https://trade-platform-five.vercel.app/login",
         caseStudy: {
             stackLine: "React 19 · Vite 8 · Tailwind v4 · Recharts · Socket.IO · Node · Express 5 · Mongoose 8 · MongoDB",
             heroAlt: "Game room on day 5 of 20: a rising AAA price chart, an order panel with buy and sell buttons, equity of $102,757.88, standings for two players, and toasts for a news headline and a filled buy order",
