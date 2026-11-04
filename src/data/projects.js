@@ -1,4 +1,9 @@
-import tradePlatformCover from '../assets/Projects-pic/Trade-platform-login-pic.png';
+import tradeGameCover from '../assets/Projects-pic/TradeGame-gameroom.jpg';
+import tradeGameLobby from '../assets/Projects-pic/TradeGame-lobby.jpg';
+import tradeGameResults from '../assets/Projects-pic/TradeGame-results.jpg';
+import tradeGameLeaderboard from '../assets/Projects-pic/TradeGame-leaderboard.jpg';
+import tradeGameAchievements from '../assets/Projects-pic/TradeGame-achievements.jpg';
+import tradeGameMobile from '../assets/Projects-pic/TradeGame-mobile.jpg';
 import realEstateCover from '../assets/Projects-pic/HomeNest-search-map.jpg';
 import homeNestHome from '../assets/Projects-pic/HomeNest-home.jpg';
 import homeNestListing from '../assets/Projects-pic/HomeNest-listing.jpg';
@@ -16,31 +21,42 @@ import satelitesCover from '../assets/Projects-pic/Satelites-poster.png';
 const allProjects = [
     {
         id: "trade-platform",
-        title: "Trade Platform",
+        title: "Trade Game",
         featured: true,
         order: 1,
-        kind: "Full-stack · Featured",
-        summary: "A stock-trading web app. Users buy and sell from a transactions module, track their positions on a dashboard, and read profit and loss from interactive charts.",
-        cover: tradePlatformCover,
-        coverAlt: "Trade Platform login screen with a profit and loss chart",
-        tech: ["React", "Node", "Express", "MongoDB", "Tailwind"],
+        kind: "Full-stack · Real-time multiplayer",
+        summary: "A live multiplayer trading game. Friends join a room by code and trade the same replay of a real market crash or rally, with headlines landing on their historical dates. Rounds are scored, and players earn XP, levels and achievements.",
+        highlight: "real market crash or rally",
+        cover: tradeGameCover,
+        coverAlt: "Trade Game room mid-round: price chart, order panel, the player's book and live standings, with a news toast and a fill confirmation",
+        tech: ["React", "Socket.IO", "Express", "MongoDB", "Tailwind"],
         github: "https://github.com/Muneeb077/Trade-Platform",
-        demo: "[DEMO_URL]",
+        demo: "/demo/trade-game/index.html",
         caseStudy: {
-            stackLine: "React · Node · Express · MongoDB · Tailwind · Vite",
-            heroAlt: "Trade Platform sign-in screen beside a daily profit and loss bar chart",
-            heroCaption: "Sign-in with email or Google, next to the daily profit/loss chart.",
+            stackLine: "React 19 · Vite 8 · Tailwind v4 · Recharts · Socket.IO · Node · Express 5 · Mongoose 8 · MongoDB",
+            heroAlt: "Game room on day 5 of 20: a rising AAA price chart, an order panel with buy and sell buttons, equity of $102,757.88, standings for two players, and toasts for a news headline and a filled buy order",
+            heroCaption: "A live round: prices replay bar by bar for everyone in the room. Shown on the synthetic test scenario.",
+            gallery: [
+                { src: tradeGameLobby, alt: "Lobby with scenario cards for the COVID crash, the 2021 meme stock rally and the 2008 financial crisis, two of them locked by level, beside a join-by-code box", caption: "Lobby: each card is a historical scenario; harder ones unlock with level." },
+                { src: tradeGameResults, alt: "Results page: rank #1 with score 21.89, return +17.86%, max drawdown 0.0% and +496 XP, a level-up bar, the final board for two players and newly unlocked achievements", caption: "Results: score breakdown, level up, final board and achievements." },
+                { src: tradeGameLeaderboard, alt: "Weekly leaderboard table of six players ranked by XP this week, with the signed-in player highlighted at #3", caption: "Leaderboards: all-time, weekly and per scenario, multiplayer rounds only." },
+                { src: tradeGameAchievements, alt: "Profile achievements gallery showing 6 of 13 badges unlocked, locked badges dimmed, and a recent rounds list", caption: "Profile: 13 achievements and recent rounds that link back to their results." },
+                { src: tradeGameMobile, alt: "Two phone-width screenshots of a round: the chart and order panel on the left, the book, equity curve, standings and news stacked on the right", caption: "On a phone the room stacks into one column, chart and order panel first." },
+            ],
             features: [
-                { title: "Accounts & sign-in", body: "Email and password login, plus Google sign-in." },
-                { title: "Buy & sell", body: "A transactions module for placing trades and keeping a record of each one." },
-                { title: "P&L dashboard", body: "Live view of open trades and overall progress, with interactive profit and loss charts." },
+                { title: "Rooms by code", body: "Create a room for a scenario, share its 6-character code, and start when everyone is in. Up to 8 players per room; late joiners watch as spectators, and a reload rejoins with the position intact." },
+                { title: "Historical replay", body: "The server replays real daily prices, one trading day about every 5 seconds, so a two-month crash plays out in about 5 minutes. Headlines appear on the day they happened. Players buy and sell at the server's price and watch live standings." },
+                { title: "Scoring & progression", body: "Score is return plus an alpha bonus for beating the market, minus penalties for deep drawdowns and for never trading. Rounds award XP and levels, which unlock harder scenarios, and 13 achievements." },
+                { title: "Leaderboards & profile", body: "All-time, weekly and per-scenario boards that count multiplayer rounds only, so solo retries can't farm a high score. The profile shows level, achievements and past rounds." },
             ],
             decisions: [
-                { title: "Data model", body: "[Why MongoDB? How you structure users, holdings and transactions.]" },
-                { title: "Calculating P&L", body: "[Where prices come from and how gains and losses are computed — server or client side, and why.]" },
-                { title: "Auth", body: "[How sessions work — JWT, cookies, OAuth for Google — and how routes are protected.]" },
+                { title: "Server owns the clock and the fills", body: "Rooms live in memory on one Node process, and a drift-corrected clock schedules every tick from the round's start time, so no bar is skipped after a stall. The client never sends a price: an order fills at the close of the bar everyone is looking at. Cash and cost are integer cents to avoid float drift over many fills. The trade-off is a single instance: a restart ends running rounds." },
+                { title: "Raw, unadjusted prices", body: "A seed script pulls daily bars from Tiingo, with Yahoo as a fallback, and keeps raw prices so GME trades in the hundreds, as it did in the headlines. Yahoo only returns split-adjusted closes, so the script un-adjusts them using every later split." },
+                { title: "No transactions, still safe", body: "MongoDB runs standalone, so every write is one document. Profile updates use compare-and-swap with a list of applied rounds, which means a retried result never adds XP twice." },
+                { title: "Security hardening", body: "Mongoose's sanitizeFilter is on and auth fields must be strings, which blocks NoSQL operator injection. REST and socket events are rate limited, with a lockout on failed room-code guesses. Google sign-in only links to an existing account when Google has verified the email." },
+                { title: "Testing", body: "109 backend tests on node:test, including socket integration against an in-memory MongoDB, 21 vitest tests for the client reducer and helpers, and a Playwright suite where two browsers play a full round." },
             ],
-            learned: "[One real bug or obstacle, how you tracked it down, and what you'd do differently now.]",
+            learned: "[One real bug or obstacle from the rebuild, how you tracked it down, and what you'd do differently now.]",
         },
     },
     {

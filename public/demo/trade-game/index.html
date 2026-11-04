@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Game · Live demo</title>
+<style>
+:root{--accent:#FFB52E;--bg:#f6f7f9;--panel:#fff;--text:#1a1d23;--muted:#5d6470;--line:#e2e5ea}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--panel:#1b1e23;--text:#e8eaed;--muted:#9aa1ab;--line:#2c3038}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1200px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 20px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:8px 14px;border-radius:999px;cursor:pointer;font:inherit}
+.tabs button[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:#1A1200}
+.desc{color:var(--muted);margin:0 0 12px;min-height:1.5em}
+.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.chrome{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.chrome i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.screen{position:relative;width:100%}
+.screen img{display:block;width:100%;height:auto;user-select:none}
+.hot{position:absolute;border:2px solid var(--accent);border-radius:8px;cursor:pointer;background:color-mix(in srgb,var(--accent) 12%,transparent);animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}100%{box-shadow:0 0 0 14px transparent}}
+@media (prefers-reduced-motion:reduce){.hot{animation:none}}
+.hot.flash{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+.bar{display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.cap{flex:1;min-width:200px}
+.cap b{display:block}
+.typed{display:inline-block;margin-top:4px;font-size:.85rem;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 8px}
+.nav{display:flex;gap:8px;align-items:center}
+.nav button{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}
+.nav button.primary{background:var(--accent);border-color:var(--accent);color:#1A1200}
+.nav button:disabled{opacity:.4;cursor:default}
+.count{color:var(--muted);font-size:.9rem;min-width:4em;text-align:center}
+.dots{display:flex;gap:6px;justify-content:center;padding:0 0 14px}
+.dots span{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer}
+.dots span.on{background:var(--accent)}
+video{display:block;width:100%;background:#000}
+button:focus-visible,.hot:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hint{color:var(--muted);font-size:.85rem;margin-top:12px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+  <h1>Trade Game</h1>
+  <p class="sub">Interactive walkthrough. Click the highlighted area, or use the arrow keys.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <p class="desc" id="desc"></p>
+  <div class="stage">
+    <div class="chrome"><i></i><i></i><i></i></div>
+    <div class="screen" id="screen"></div>
+    <div class="bar">
+      <div class="cap" id="cap"></div>
+      <div class="nav">
+        <button id="video" hidden>Watch video</button>
+        <button id="prev">Back</button>
+        <span class="count" id="count"></span>
+        <button id="next" class="primary">Next</button>
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <p class="hint">Screenshots recorded from the running app.</p>
+</main>
+<script>
+const FLOWS = [{"name": "Sign up", "description": "Create an account and land on the Lobby: scenario cards, level locks and room joining.", "frames": [{"src": "assets/sign-up-01.png", "caption": "Create an account: start with your name", "typed": "Alex Rivera", "hotspot": {"l": 3.985460069444444, "t": 45.32465277777778, "w": 14.80685763888889, "h": 3.833333333333333}, "ratio": 1.6}, {"src": "assets/sign-up-02.png", "caption": "Add an email address", "typed": "alex-rivera@demo.test", "hotspot": {"l": 21.207682291666664, "t": 45.32465277777778, "w": 14.80685763888889, "h": 3.833333333333333}, "ratio": 1.6}, {"src": "assets/sign-up-03.png", "caption": "Choose a password", "typed": null, "hotspot": {"l": 3.985460069444444, "t": 55.47743055555555, "w": 29.80685763888889, "h": 3.833333333333333}, "ratio": 1.6}, {"src": "assets/sign-up-04.png", "caption": "Create the account", "typed": null, "hotspot": {"l": 2.9166666666666665, "t": 61.109375, "w": 34.166666666666664, "h": 5.864583333333333}, "ratio": 1.6}, {"src": "assets/sign-up-05.png", "caption": "The Lobby: each card is a real historical market scenario", "typed": null, "hotspot": {"l": 17.916666666666668, "t": 18.11111111111111, "w": 55.833333333333336, "h": 50.30555555555556}, "ratio": 1.6}, {"src": "assets/sign-up-06.png", "caption": "Harder scenarios stay locked until you level up", "typed": null, "hotspot": {"l": 33.34743923611111, "t": 59.50694444444444, "w": 10.888671875, "h": 3.7986111111111107}, "ratio": 1.6}, {"src": "assets/sign-up-07.png", "caption": "Join a friend's room by code, or browse open rooms", "typed": null, "hotspot": {"l": 76.83268229166667, "t": 24.96527777777778, "w": 14.277343749999998, "h": 3.833333333333333}, "ratio": 1.6}, {"src": "assets/sign-up-08.png", "caption": "Signed in and ready to play", "typed": null, "hotspot": null, "ratio": 1.6}], "video": "assets/sign-up.webm"}, {"name": "Multiplayer round", "description": "Two players, one live replay: create a room, join by code, trade through the news, and compare results.", "frames": [{"src": "assets/multiplayer-round-01.png", "caption": "Player A creates a room for a scenario", "typed": null, "hotspot": {"l": 47.43055555555556, "t": 37.1875, "w": 7.960069444444444, "h": 4.708333333333333}, "ratio": 1.6}, {"src": "assets/multiplayer-round-02.png", "caption": "Pick room settings, then create it", "typed": null, "hotspot": {"l": 57.18098958333333, "t": 61.11631944444444, "w": 9.555121527777779, "h": 5.864583333333333}, "ratio": 1.6}, {"src": "assets/multiplayer-round-03.png", "caption": "Share the room code (72QKXA) with a friend", "typed": null, "hotspot": {"l": 23.186848958333332, "t": 23.243055555555557, "w": 19.66037326388889, "h": 9.333333333333334}, "ratio": 1.6}, {"src": "assets/multiplayer-round-04.png", "caption": "Player B joined by code. The host starts the round", "typed": null, "hotspot": {"l": 19.375, "t": 54.229166666666664, "w": 10.697699652777779, "h": 7.019097222222221}, "ratio": 1.6}, {"src": "assets/multiplayer-round-05.png", "caption": "Both players get the same countdown", "typed": null, "hotspot": {"l": 19.375, "t": 37.90972222222222, "w": 52.916666666666664, "h": 9.333333333333334}, "ratio": 1.6}, {"src": "assets/multiplayer-round-06.png", "caption": "The round is live: prices replay bar by bar, in lockstep for everyone", "typed": null, "hotspot": {"l": 17.916666666666668, "t": 15.11111111111111, "w": 55.833333333333336, "h": 50.708333333333336}, "ratio": 1.6}, {"src": "assets/multiplayer-round-07.png", "caption": "Choose a quantity of AAA", "typed": "800", "hotspot": {"l": 76.55490451388889, "t": 36.27777777777778, "w": 15.483940972222221, "h": 3.833333333333333}, "ratio": 1.6}, {"src": "assets/multiplayer-round-08.png", "caption": "Place a market buy", "typed": null, "hotspot": {"l": 75.48611111111111, "t": 45.013888888888886, "w": 11.180555555555555, "h": 7.019097222222221}, "ratio": 1.6}, {"src": "assets/multiplayer-round-09.png", "caption": "A news headline lands as a toast, timed to its historical date", "typed": null, "hotspot": {"l": 44.11241319444444, "t": 8.0, "w": 11.77517361111111, "h": 6.381944444444445}, "ratio": 1.6}, {"src": "assets/multiplayer-round-10.png", "caption": "Live standings rank every player by equity as the replay runs", "typed": null, "hotspot": {"l": 75.48611111111111, "t": 65.25520833333334, "w": 22.083333333333332, "h": 14.777777777777779}, "ratio": 1.6}, {"src": "assets/multiplayer-round-11.png", "caption": "Positions, P&L and the equity curve update every bar", "typed": null, "hotspot": {"l": 19.09722222222222, "t": 76.70833333333333, "w": 53.47222222222222, "h": 9.79861111111111}, "ratio": 1.6}, {"src": "assets/multiplayer-round-12.png", "caption": "Round over: your rank, score, return and XP gained", "typed": null, "hotspot": {"l": 17.916666666666668, "t": 6.0, "w": 80.83333333333333, "h": 28.444444444444443}, "ratio": 1.6}, {"src": "assets/multiplayer-round-13.png", "caption": "The final board ranks both players", "typed": null, "hotspot": {"l": 19.09722222222222, "t": 41.22222222222222, "w": 78.47222222222221, "h": 15.930555555555555}, "ratio": 1.6}, {"src": "assets/multiplayer-round-14.png", "caption": "Achievements unlocked this round", "typed": null, "hotspot": null, "ratio": 1.6}], "video": "assets/multiplayer-round.webm"}, {"name": "Leaderboard and profile", "description": "All-time, weekly and per-scenario leaderboards, then the profile: level, XP bar and achievements.", "frames": [{"src": "assets/leaderboard-and-profile-01.png", "caption": "Open the Leaderboard", "typed": null, "hotspot": {"l": 0.9722222222222222, "t": 23.541666666666668, "w": 14.652777777777779, "h": 6.319444444444445}, "ratio": 1.6}, {"src": "assets/leaderboard-and-profile-02.png", "caption": "All-time XP standings. Switch to this week", "typed": null, "hotspot": {"l": 23.408203125, "t": 14.11111111111111, "w": 6.891276041666666, "h": 4.708333333333333}, "ratio": 1.6}, {"src": "assets/leaderboard-and-profile-03.png", "caption": "Weekly XP resets every ISO week. Now by scenario", "typed": null, "hotspot": {"l": 29.8828125, "t": 14.11111111111111, "w": 7.514105902777778, "h": 4.708333333333333}, "ratio": 1.6}, {"src": "assets/leaderboard-and-profile-04.png", "caption": "Best score per scenario. Now open your profile", "typed": null, "hotspot": {"l": 0.9722222222222222, "t": 28.97222222222222, "w": 14.652777777777779, "h": 6.319444444444445}, "ratio": 1.6}, {"src": "assets/leaderboard-and-profile-05.png", "caption": "Your profile: level and the XP bar to the next level", "typed": null, "hotspot": {"l": 19.375, "t": 19.666666666666664, "w": 40.833333333333336, "h": 8.222222222222223}, "ratio": 1.6}, {"src": "assets/leaderboard-and-profile-06.png", "caption": "The achievements gallery: unlocked badges and the ones still to earn", "typed": null, "hotspot": {"l": 19.375, "t": 27.77777777777778, "w": 52.916666666666664, "h": 72.22222222222221}, "ratio": 1.6}, {"src": "assets/leaderboard-and-profile-07.png", "caption": "Recent rounds link back to their full results", "typed": null, "hotspot": {"l": 75.48611111111111, "t": 27.444444444444443, "w": 22.083333333333332, "h": 7.722222222222222}, "ratio": 1.6}, {"src": "assets/leaderboard-and-profile-08.png", "caption": "Any past round reopens with its final board and stats", "typed": null, "hotspot": null, "ratio": 1.6}], "video": "assets/leaderboard-and-profile.webm"}, {"name": "Mobile game room", "description": "Player B's view of the same live round on a 390 px phone screen.", "frames": [{"src": "assets/mobile-gameroom-01.png", "caption": "On a phone the chart comes first, with the order panel below it", "typed": null, "hotspot": null, "ratio": 0.46208530805687204}, {"src": "assets/mobile-gameroom-02.png", "caption": "Book, standings and news stack in one column", "typed": null, "hotspot": null, "ratio": 0.46208530805687204}], "video": null}];
+let f = 0, i = 0, showVideo = false;
+const $ = id => document.getElementById(id);
+
+function renderTabs() {
+  $('tabs').innerHTML = '';
+  FLOWS.forEach((fl, k) => {
+    const b = document.createElement('button');
+    b.role = 'tab'; b.textContent = fl.name; b.setAttribute('aria-selected', k === f);
+    b.onclick = () => { f = k; i = 0; showVideo = false; render(); };
+    $('tabs').appendChild(b);
+  });
+}
+
+function render() {
+  renderTabs();
+  const fl = FLOWS[f], fr = fl.frames[i];
+  $('desc').textContent = fl.description || '';
+  const screen = $('screen');
+  screen.innerHTML = '';
+  // Reserve the frame's height up front so hotspots never sit over an empty, still-loading image.
+  screen.style.aspectRatio = showVideo && fl.video ? '' : String(fr.ratio);
+  $('video').hidden = !fl.video;
+  $('video').textContent = showVideo ? 'Back to walkthrough' : 'Watch video';
+  if (showVideo && fl.video) {
+    const v = document.createElement('video');
+    v.src = fl.video; v.controls = true; v.autoplay = true; v.muted = true; v.playsInline = true;
+    screen.appendChild(v);
+  } else {
+    const img = new Image();
+    img.src = fr.src; img.alt = fr.caption; img.draggable = false;
+    img.onclick = () => flash();
+    screen.appendChild(img);
+    if (fr.hotspot && i < fl.frames.length - 1) {
+      const h = document.createElement('button');
+      h.className = 'hot'; h.setAttribute('aria-label', fr.caption);
+      Object.assign(h.style, {left: fr.hotspot.l + '%', top: fr.hotspot.t + '%', width: fr.hotspot.w + '%', height: fr.hotspot.h + '%'});
+      h.onclick = e => { e.stopPropagation(); go(1); };
+      screen.appendChild(h);
+    }
+    // Preload the next frame so clicks feel instant.
+    if (fl.frames[i + 1]) new Image().src = fl.frames[i + 1].src;
+  }
+  $('cap').innerHTML = '';
+  const b = document.createElement('b'); b.textContent = fr.caption; $('cap').appendChild(b);
+  if (fr.typed) { const t = document.createElement('span'); t.className = 'typed'; t.textContent = 'Types: ' + fr.typed; $('cap').appendChild(t); }
+  $('count').textContent = (i + 1) + ' / ' + fl.frames.length;
+  $('prev').disabled = i === 0 && f === 0;
+  const last = i === fl.frames.length - 1;
+  $('next').textContent = last ? (f < FLOWS.length - 1 ? 'Next flow' : 'Restart') : 'Next';
+  $('dots').innerHTML = '';
+  fl.frames.forEach((_, k) => {
+    const d = document.createElement('span'); if (k === i) d.className = 'on';
+    d.onclick = () => { i = k; showVideo = false; render(); };
+    $('dots').appendChild(d);
+  });
+}
+
+function go(step) {
+  showVideo = false;
+  const fl = FLOWS[f];
+  i += step;
+  if (i >= fl.frames.length) { f = (f + 1) % FLOWS.length; i = 0; }
+  if (i < 0) { if (f > 0) { f--; i = FLOWS[f].frames.length - 1; } else i = 0; }
+  render();
+}
+
+function flash() {
+  const h = document.querySelector('.hot');
+  if (!h) return go(1);
+  h.classList.add('flash'); setTimeout(() => h.classList.remove('flash'), 400);
+}
+
+$('next').onclick = () => go(1);
+$('prev').onclick = () => go(-1);
+$('video').onclick = () => { showVideo = !showVideo; render(); };
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+render();
+</script>
+</body>
+</html>
