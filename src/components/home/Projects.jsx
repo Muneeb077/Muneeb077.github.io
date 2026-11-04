@@ -19,6 +19,9 @@ const ProjectButtons = ({ project }) => (
     {project.demo && (
       <Button variant="outline" href={project.demo} external>Live demo</Button>
     )}
+    {project.live && (
+      <Button variant="outline" href={project.live} external>Try it live</Button>
+    )}
   </div>
 )
 
