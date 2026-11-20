@@ -11,6 +11,12 @@ import homeNestSearchDark from '../assets/Projects-pic/HomeNest-search-dark.jpg'
 import homeNestHostDashboard from '../assets/Projects-pic/HomeNest-host-dashboard.jpg';
 import homeNestAdminOverview from '../assets/Projects-pic/HomeNest-admin-overview.jpg';
 import satelitesCover from '../assets/Projects-pic/Satelites-poster.png';
+import rozgarCover from '../assets/Projects-pic/Rozgar-review-queue.jpg';
+import rozgarReviewResume from '../assets/Projects-pic/Rozgar-review-resume.jpg';
+import rozgarCoverLetter from '../assets/Projects-pic/Rozgar-cover-letter.jpg';
+import rozgarApplications from '../assets/Projects-pic/Rozgar-applications.jpg';
+import rozgarContentDark from '../assets/Projects-pic/Rozgar-content-dark.jpg';
+import rozgarCloudAiDark from '../assets/Projects-pic/Rozgar-cloud-ai-dark.jpg';
 
 /**
  * Featured projects get image cards; the rest are listed under "More projects".
@@ -98,10 +104,48 @@ const allProjects = [
         },
     },
     {
+        id: "rozgar",
+        title: "Rozgar — Job Application Assistant",
+        featured: true,
+        order: 3,
+        kind: "Desktop app · Electron · AI",
+        summary: "A desktop app that finds job postings across Canada, tailors a resume and cover letter for each one from your own content, and pre-fills the application form. It never invents a fact, and you always click Submit yourself.",
+        highlight: "you always click Submit yourself",
+        cover: rozgarCover,
+        coverAlt: "Rozgar review queue: a table of matched jobs with scores, and a side panel for a Geotab role showing an 88 match, skills found in the resume and two missing skills",
+        tech: ["Electron", "TypeScript", "React", "SQLite", "Playwright", "Claude API"],
+        github: "https://github.com/Muneeb077/Rozgar",
+        caseStudy: {
+            stackLine: "Electron 45 · TypeScript · React 19 · Vite · zod · Drizzle · SQLite (SQLCipher) · Playwright · LaTeX · Claude API / Ollama · ExcelJS",
+            heroAlt: "Review queue listing eight jobs from Geotab, Hootsuite and others with match scores, filters for role family and minimum match, and a detail panel with Prepare application and Skip buttons",
+            heroCaption: "Review queue: jobs found by discovery, best match first. Skills the posting asks for but your resume lacks are shown, never added. Shown with test data.",
+            gallery: [
+                { src: rozgarReviewResume, alt: "Review and approve page for a Junior Software Developer role: counts of reworded, moved and left-out bullets, each reworded bullet labelled beside its section, and an approval panel above a disabled Fill the application form button", caption: "Review: every rewrite is labelled against your master resume. Nothing is filled until you approve this version." },
+                { src: rozgarCoverLetter, alt: "Approved cover letter beside the Apply panel, which reports 14 fields filled and lists required questions left blank, with two AI sentences struck out below the letter and the reason each was removed", caption: "Grounding check: the AI's made-up claims are struck out with the reason. The form is filled; unknown questions stay blank." },
+                { src: rozgarApplications, alt: "Applications page grouping roles by status: one filled but not submitted, three applied via form, external site or Gmail draft, and one interview, each with a tracker ID", caption: "Applications: statuses set in Tracker.xlsx (Interview, Rejected…) sync back on the next run." },
+                { src: rozgarContentDark, alt: "Dark mode Content page: master resume import with 31 items, import boxes for GitHub, a portfolio URL and a text file, and the content pool with experience, project and skill tabs", caption: "Content pool: the only facts tailoring may use, imported from a LaTeX resume, GitHub, a portfolio or notes." },
+                { src: rozgarCloudAiDark, alt: "Dark mode dialog titled Turn on cloud AI, listing what is removed before anything is sent to Anthropic's API and noting macOS will ask for Touch ID", caption: "Cloud AI is opt-in, behind Touch ID. Local Ollama works without sending anything off the machine." },
+            ],
+            features: [
+                { title: "Job discovery", body: "Twice a day, Rozgar polls Greenhouse, Lever and Ashby job boards plus Adzuna and Jooble, dedupes postings across sources, skips French ones, and scores each against your content. The company registry grows on its own from board links found in aggregator results." },
+                { title: "Tailored resume & cover letter", body: "For a chosen job, the AI picks and rewords bullets from your content pool, and Rozgar renders them into your own LaTeX layout. Every PDF is checked: one page, contact line parses, headings in order, every listed skill extractable as text." },
+                { title: "Assisted apply", body: "Rozgar opens Greenhouse, Lever and Ashby forms in a visible Chrome or Edge window, fills the fields, attaches the PDF and stops. You review and click Submit. Email jobs become Gmail drafts; Workday, LinkedIn and Indeed get a prepare-only card." },
+                { title: "Tracker", body: "Each application is written to a Tracker.xlsx with a Status dropdown. Change a status in Excel or Numbers and Rozgar reads it back, so you never apply to the same job twice." },
+            ],
+            decisions: [
+                { title: "The AI can't invent facts", body: "The model returns JSON only, and each bullet must cite the content item it came from. A grounding verifier then rejects any number, date, skill, title or employer not present in that source; a rejected rewrite falls back to your original wording. The trade-off is plainer rewrites, in exchange for a resume you can defend in an interview." },
+                { title: "No code path clicks Submit", body: "One file is allowed to call Playwright's click, and it refuses links, submit controls and anything labelled with a submit-like word. While filling, an in-page blocker cancels submit events and Enter-to-submit. A security test greps every form filler, and mock forms in e2e tests fail on any submit click." },
+                { title: "Local-first and encrypted", body: "Everything lives in a SQLCipher-encrypted SQLite database whose key, API keys and OAuth tokens sit in the OS keychain. Sensitive profile answers get a second layer of field encryption. Before any cloud AI call, phone, email, address, salary and self-ID values are redacted; with Ollama nothing leaves the machine." },
+                { title: "Hardened Electron", body: "The React renderer is sandboxed with a strict CSP and reaches the main process only through a fixed allowlist of IPC channels, each validated with zod. LaTeX compiles with shell-escape off and restricted file access. The packaged app is fused (no run-as-node, asar integrity) and ad-hoc signed with a published SHA-256." },
+                { title: "Testing", body: "Over 2,000 automated tests across Vitest unit, integration and security suites and Playwright e2e runs against the real Electron app, all behind a no-network guard with mocked job boards, AI, Google and application forms. GitHub Actions on macOS runs the same checks." },
+            ],
+        },
+    },
+    {
         id: "wine-accracy-model",
         title: "Wine Quality Prediction",
         featured: false,
-        order: 3,
+        order: 4,
         summary: "ML model that lifted accuracy from a 45% baseline to 85% through feature engineering and careful EDA.",
         highlight: "45% baseline to 85%",
         tech: ["Python · scikit-learn"],
@@ -111,7 +155,7 @@ const allProjects = [
         id: "satelites-trend",
         title: "Satellite Trends Dashboard",
         featured: false,
-        order: 4,
+        order: 5,
         summary: "Cleaned and transformed satellite datasets, then built an interactive dashboard to explore trends. Course project, COMP 4304.",
         cover: satelitesCover,
         coverAlt: "Satellite trends visualization poster",
