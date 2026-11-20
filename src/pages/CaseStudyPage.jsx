@@ -170,6 +170,25 @@ const CaseStudyPage = () => {
         <figcaption className="font-mono text-[13px] text-muted">{study.heroCaption}</figcaption>
       </figure>
 
+      {study.video && (
+        <section className="flex flex-col gap-5">
+          <H2>Walkthrough video</H2>
+          <figure className="flex flex-col gap-3">
+            <video
+              src={study.video.src}
+              poster={study.video.poster}
+              aria-label={study.video.label}
+              controls
+              muted
+              playsInline
+              preload="none"
+              className="h-auto w-full rounded-2xl border border-line bg-ink"
+            />
+            <figcaption className="font-mono text-[13px] text-muted">{study.video.caption}</figcaption>
+          </figure>
+        </section>
+      )}
+
       <section className="flex flex-col gap-5">
         <H2>What I built</H2>
         <div className="flex flex-wrap gap-4">

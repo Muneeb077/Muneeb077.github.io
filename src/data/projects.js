@@ -17,12 +17,15 @@ import rozgarCoverLetter from '../assets/Projects-pic/Rozgar-cover-letter.jpg';
 import rozgarApplications from '../assets/Projects-pic/Rozgar-applications.jpg';
 import rozgarContentDark from '../assets/Projects-pic/Rozgar-content-dark.jpg';
 import rozgarCloudAiDark from '../assets/Projects-pic/Rozgar-cloud-ai-dark.jpg';
+import rozgarVideo from '../assets/Projects-video/Rozgar-walkthrough.mp4';
+import rozgarVideoPoster from '../assets/Projects-pic/Rozgar-walkthrough-poster.jpg';
 
 /**
  * Featured projects get image cards; the rest are listed under "More projects".
  * Optional fields: demo and live (each hides its button when undefined), highlight, caseStudy.
  * demo is the click-through walkthrough; live is the deployed app.
  * caseStudy.gallery is an optional list of { src, alt, caption } screenshots.
+ * caseStudy.video is an optional { src, poster, label, caption } walkthrough video (mp4, captions burned in).
  * @type {Array<Object>}
  */
 const allProjects = [
@@ -120,6 +123,12 @@ const allProjects = [
             stackLine: "Electron 45 · TypeScript · React 19 · Vite · zod · Drizzle · SQLite (SQLCipher) · Playwright · LaTeX · Claude API / Ollama · ExcelJS",
             heroAlt: "Review queue listing eight jobs from Geotab, Hootsuite and others with match scores, filters for role family and minimum match, and a detail panel with Prepare application and Skip buttons",
             heroCaption: "Review queue: jobs found by discovery, best match first. Skills the posting asks for but your resume lacks are shown, never added. Shown with test data.",
+            video: {
+                src: rozgarVideo,
+                poster: rozgarVideoPoster,
+                label: "Two-minute walkthrough of Rozgar: first-run setup, tailoring a resume and cover letter, filling an application form, and the privacy settings",
+                caption: "Two-minute walkthrough recorded from the running app: setup, tailoring, assisted apply and privacy. Job boards, AI and the application form are local mocks; nothing was submitted.",
+            },
             gallery: [
                 { src: rozgarReviewResume, alt: "Review and approve page for a Junior Software Developer role: counts of reworded, moved and left-out bullets, each reworded bullet labelled beside its section, and an approval panel above a disabled Fill the application form button", caption: "Review: every rewrite is labelled against your master resume. Nothing is filled until you approve this version." },
                 { src: rozgarCoverLetter, alt: "Approved cover letter beside the Apply panel, which reports 14 fields filled and lists required questions left blank, with two AI sentences struck out below the letter and the reason each was removed", caption: "Grounding check: the AI's made-up claims are struck out with the reason. The form is filled; unknown questions stay blank." },
