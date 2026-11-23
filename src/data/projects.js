@@ -127,7 +127,7 @@ const allProjects = [
                 src: rozgarVideo,
                 poster: rozgarVideoPoster,
                 label: "Two-minute walkthrough of Rozgar: first-run setup, tailoring a resume and cover letter, filling an application form, and the privacy settings",
-                caption: "Two-minute walkthrough recorded from the running app: setup, tailoring, assisted apply and privacy. Job boards, AI and the application form are local mocks; nothing was submitted.",
+                caption: "Two-minute walkthrough recorded from the running app: setup, tailoring, assisted apply and privacy.",
             },
             gallery: [
                 { src: rozgarReviewResume, alt: "Review and approve page for a Junior Software Developer role: counts of reworded, moved and left-out bullets, each reworded bullet labelled beside its section, and an approval panel above a disabled Fill the application form button", caption: "Review: every rewrite is labelled against your master resume. Nothing is filled until you approve this version." },
